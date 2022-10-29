@@ -11,7 +11,7 @@ fn convert_number_to_bits<T: std::fmt::Binary>(num: T, size: usize) -> Vec<u8> {
     bytes
 }
 
-fn generate_barcode(page: u32, code: u16) -> Vec<(f64, f64, f64, f64, u8)> {
+fn generate_barcode(page: u32, code: u16) -> Vec<(f32, f32, f32, f32, u8)> {
     assert!(page > 0 && page <= 255, "Page number should within range: 1-255");
     assert!(code <= 511, "Bar code should within range: 0-511");
     let page_bits = convert_number_to_bits(page, 8);
@@ -46,7 +46,7 @@ fn generate_barcode(page: u32, code: u16) -> Vec<(f64, f64, f64, f64, u8)> {
     rects
 }
 
-fn generate_operations(rects: Vec<(f64, f64, f64, f64, u8)>) -> String {
+fn generate_operations(rects: Vec<(f32, f32, f32, f32, u8)>) -> String {
     let mut operations = String::new();
     let mut current_color = b'\0';
     for (x, y, w, h, bit) in rects {
